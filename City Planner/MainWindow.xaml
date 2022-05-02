@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="City Planner" Height="768" Width="1366" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" WindowState="Normal" Icon="/CityIcon.png">
     <Grid HorizontalAlignment="Left" Width="1366">
+        <Button x:Name="start" Content="Start" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Width="303" Click="start_Click"/>
+        <Button x:Name="eredmeny" Content="Eredmények" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Width="302" Margin="0,440,0,0" Click="eredmeny_Click"/>
+        <Button x:Name="kilepes" Content="Kilépés" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Width="302" Margin="0,565,0,0" Click="kilepes_Click"/>
 
     </Grid>
 </Window>

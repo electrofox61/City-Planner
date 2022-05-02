@@ -24,5 +24,23 @@ namespace City_Planner
         {
             InitializeComponent();
         }
+
+        private void start_Click(object sender, RoutedEventArgs e)
+        {
+            Jatek subWindow = new Jatek();
+            subWindow.Show();
+            foablak.Close();
+        }
+
+        private void eredmeny_Click(object sender, RoutedEventArgs e)
+        {
+            Eredmenyek subWindow = new Eredmenyek();
+            subWindow.Show();
+        }
+
+        private void kilepes_Click(object sender, RoutedEventArgs e)
+        {
+            foablak.Close();
+        }
     }
 }
