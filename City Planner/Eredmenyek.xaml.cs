@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,18 @@ namespace City_Planner
     /// </summary>
     public partial class Eredmenyek : Window
     {
+        string vasut = "";
         public Eredmenyek()
         {
             InitializeComponent();
+        }
+
+        private void eredmenyablak_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (File.Exists("vasut.txt"))
+            {
+                nice.Content = "nicerrr";
+            }
         }
     }
 }

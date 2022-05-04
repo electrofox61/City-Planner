@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,6 +38,15 @@ namespace City_Planner
         int kor = 0;
         double boldogsag = 1;
         int korhaz = 0;
+        int iskola = 0;
+        int vasut = 0;
+        public void achcheck()
+        {
+            if (vasut > 200)
+            {
+                File.WriteAllText("vasut.txt", "true");
+            }
+        }
         public void lakoszam()
         {
             for (int i = 0; i < 9; i++)
@@ -170,15 +180,120 @@ namespace City_Planner
                 {
                     if (C1[i, j] == 5)
                     {
+                        iskola++;
                     }
                     if (C2[i, j] == 5)
                     {
+                        iskola++;
                     }
                     if (C3[i, j] == 5)
                     {
+                        iskola++;
                     }
                     if (C4[i, j] == 5)
                     {
+                        iskola++;
+                    }
+                }
+            }
+        }
+        public void adatszam()
+        {
+            if (korhaz == 0)
+                boldogsag -= 1;
+            else if (korhaz == 1)
+                boldogsag += 1;
+            else if (korhaz == 2)
+                boldogsag += 3;
+            else if (korhaz == 3)
+                boldogsag += 7;
+            else if (korhaz > 3)
+                boldogsag += 7 + korhaz * 0.1;
+            boldogsagL.Content = Math.Round(boldogsag, 2);
+            if (boldogsag == 0)
+                boldogsag = 0.1;
+            penzL.Content = Math.Round(penz * boldogsag, 2);
+            lakoL.Content = lako;
+        }
+        public void utszam()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (U1[i, j] == 0)
+                    {
+                    }
+                    if (U2[i, j] == 0)
+                    {
+                    }
+                    if (U3[i, j] == 0)
+                    {
+                    }
+                    if (U4[i, j] == 0)
+                    {
+                    }
+                }
+            }
+        }
+        public void betonszam()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (U1[i, j] == 1)
+                    {
+                        penz--;
+                        boldogsag += 0.3;
+                    }
+                    if (U2[i, j] == 1)
+                    {
+                        penz--;
+                        boldogsag += 0.3;
+                    }
+                    if (U3[i, j] == 1)
+                    {
+                        penz--;
+                        boldogsag += 0.3;
+                    }
+                    if (U4[i, j] == 1)
+                    {
+                        penz--;
+                        boldogsag += 0.3;
+                    }
+                }
+            }
+        }
+        public void vasutszam()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    if (U1[i, j] == 2)
+                    {
+                        vasut++;
+                        penz -= 2;
+                        boldogsag += 0.8;
+                    }
+                    if (U2[i, j] == 2)
+                    {
+                        vasut++;
+                        penz -= 2;
+                        boldogsag += 0.8;
+                    }
+                    if (U3[i, j] == 2)
+                    {
+                        vasut++;
+                        penz -= 2;
+                        boldogsag += 0.8;
+                    }
+                    if (U4[i, j] == 2)
+                    {
+                        vasut++;
+                        penz -= 2;
+                        boldogsag += 0.8;
                     }
                 }
             }
@@ -195,6 +310,11 @@ namespace City_Planner
             mulatszam();
             korhazszam();
             iskolaszam();
+            utszam();
+            betonszam();
+            vasutszam();
+
+            adatszam();
             CityG1.Children.Clear();
             CityG2.Children.Clear();
             CityG3.Children.Clear();
@@ -367,25 +487,25 @@ namespace City_Planner
                     CityG4.Children.Add(b);
                 }
             }
-            if (korhaz == 0)
-                boldogsag -= 1;
-            else if (korhaz == 1)
-                boldogsag += 1;
-            else if (korhaz == 2)
-                boldogsag += 3;
-            else if (korhaz == 3)
-                boldogsag += 7;
-            else if (korhaz > 3)
-                boldogsag += 7 + korhaz * 0.1;
-            boldogsagL.Content = Math.Round(boldogsag,2);
-            if (boldogsag == 0)
-                boldogsag = 0.1;
-            penzL.Content = Math.Round(penz * boldogsag,2);
-            lakoL.Content = lako;
         }
 
         public void AlsoMegjelenit()
         {
+            korhaz = 0;
+            lako = 0;
+            penz = 0;
+            boldogsag = 1;
+            lakoszam();
+            gyarszam();
+            boltszam();
+            mulatszam();
+            korhazszam();
+            iskolaszam();
+            utszam();
+            betonszam();
+            vasutszam();
+
+            adatszam();
             CityG1.Children.Clear();
             CityG2.Children.Clear();
             CityG3.Children.Clear();
