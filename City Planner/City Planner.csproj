@@ -9,11 +9,33 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="CityBackground.png" />
     <None Remove="CityIcon.png" />
+    <None Remove="commercial.png" />
+    <None Remove="entertainment.png" />
+    <None Remove="hospital.png" />
+    <None Remove="industrial.png" />
+    <None Remove="living.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="CityBackground.png" />
     <Resource Include="CityIcon.png" />
+    <Resource Include="commercial.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="entertainment.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="hospital.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="industrial.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="living.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

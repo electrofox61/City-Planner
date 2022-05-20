@@ -20,7 +20,6 @@ namespace City_Planner
     /// </summary>
     public partial class Eredmenyek : Window
     {
-        string vasut = "";
         public Eredmenyek()
         {
             InitializeComponent();

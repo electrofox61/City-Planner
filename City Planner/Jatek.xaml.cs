@@ -34,13 +34,14 @@ namespace City_Planner
         int[,] U4 = new int[9, 9];
         int kivalasztott = 0;
         int lako = 0;
-        int penz = 0;
+        double penz = 0;
         int kor = 0;
+        int gyar = 0;
+        double jovedelem = 0;
         double boldogsag = 1;
         int korhaz = 0;
-        int iskola = 0;
         int vasut = 0;
-        public void achcheck()
+        public void achcheck() //nincs még meghívva
         {
             if (vasut > 200)
             {
@@ -80,18 +81,22 @@ namespace City_Planner
                 {
                     if (C1[i, j] == 1)
                     {
+                        gyar++;
                         boldogsag -= 0.25;
                     }
                     if (C2[i, j] == 1)
                     {
+                        gyar++;
                         boldogsag -= 0.25;
                     }
                     if (C3[i, j] == 1)
                     {
+                        gyar++;
                         boldogsag -= 0.25;
                     }
                     if (C4[i, j] == 1)
                     {
+                        gyar++;
                         boldogsag -= 0.25;
                     }
                 }
@@ -105,19 +110,19 @@ namespace City_Planner
                 {
                     if (C1[i, j] == 2)
                     {
-                        penz++;
+                        jovedelem++;
                     }
                     if (C2[i, j] == 2)
                     {
-                        penz++;
+                        jovedelem++;
                     }
                     if (C3[i, j] == 2)
                     {
-                        penz++;
+                        jovedelem++;
                     }
                     if (C4[i, j] == 2)
                     {
-                        penz++;
+                        jovedelem++;
                     }
                 }
             }
@@ -172,31 +177,6 @@ namespace City_Planner
                 }
             }
         }
-        public void iskolaszam()
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    if (C1[i, j] == 5)
-                    {
-                        iskola++;
-                    }
-                    if (C2[i, j] == 5)
-                    {
-                        iskola++;
-                    }
-                    if (C3[i, j] == 5)
-                    {
-                        iskola++;
-                    }
-                    if (C4[i, j] == 5)
-                    {
-                        iskola++;
-                    }
-                }
-            }
-        }
         public void adatszam()
         {
             if (korhaz == 0)
@@ -212,7 +192,14 @@ namespace City_Planner
             boldogsagL.Content = Math.Round(boldogsag, 2);
             if (boldogsag == 0)
                 boldogsag = 0.1;
-            penzL.Content = Math.Round(penz * boldogsag, 2);
+            if (jovedelem >= gyar)
+            {
+                jovedelem = gyar;
+            }
+            jovedelem = Math.Round(jovedelem * boldogsag * lako * 0.5, 2);
+            jovedelemL.Content = jovedelem;
+            penz += jovedelem;
+            penzL.Content = Math.Round(penz, 2);
             lakoL.Content = lako;
         }
         public void utszam()
@@ -244,22 +231,22 @@ namespace City_Planner
                 {
                     if (U1[i, j] == 1)
                     {
-                        penz--;
+                        penz -= 200;
                         boldogsag += 0.3;
                     }
                     if (U2[i, j] == 1)
                     {
-                        penz--;
+                        penz -= 200;
                         boldogsag += 0.3;
                     }
                     if (U3[i, j] == 1)
                     {
-                        penz--;
+                        penz -= 200;
                         boldogsag += 0.3;
                     }
                     if (U4[i, j] == 1)
                     {
-                        penz--;
+                        penz -= 200;
                         boldogsag += 0.3;
                     }
                 }
@@ -274,25 +261,25 @@ namespace City_Planner
                     if (U1[i, j] == 2)
                     {
                         vasut++;
-                        penz -= 2;
+                        penz -= 400;
                         boldogsag += 0.8;
                     }
                     if (U2[i, j] == 2)
                     {
                         vasut++;
-                        penz -= 2;
+                        penz -= 400;
                         boldogsag += 0.8;
                     }
                     if (U3[i, j] == 2)
                     {
                         vasut++;
-                        penz -= 2;
+                        penz -= 400;
                         boldogsag += 0.8;
                     }
                     if (U4[i, j] == 2)
                     {
                         vasut++;
-                        penz -= 2;
+                        penz -= 400;
                         boldogsag += 0.8;
                     }
                 }
@@ -300,16 +287,15 @@ namespace City_Planner
         }
         public void Megjelenit()
         {
+            jovedelem = 0;
             korhaz = 0;
             lako = 0;
-            penz = 0;
             boldogsag = 1;
             lakoszam();
             gyarszam();
             boltszam();
             mulatszam();
             korhazszam();
-            iskolaszam();
             utszam();
             betonszam();
             vasutszam();
@@ -319,6 +305,20 @@ namespace City_Planner
             CityG2.Children.Clear();
             CityG3.Children.Clear();
             CityG4.Children.Clear();
+            nulla.Fill = new ImageBrush(new BitmapImage(new Uri("living.png", UriKind.Relative)));
+            nullaL.Content = "'0' gomb - Living";
+            egy.Fill = new ImageBrush(new BitmapImage(new Uri("industrial.png", UriKind.Relative)));
+            egyL.Content = "'1' gomb - Industrial";
+            ket.Fill = new ImageBrush(new BitmapImage(new Uri("commercial.png", UriKind.Relative)));
+            ketL.Content = "'2' gomb - Commercial";
+            harom.Fill = new ImageBrush(new BitmapImage(new Uri("entertainment.png", UriKind.Relative)));
+            haromL.Content = "'3' gomb - Entertainment";
+            negy.Fill = new ImageBrush(new BitmapImage(new Uri("hospital.png", UriKind.Relative)));
+            negyL.Content = "'4' gomb - Medical";
+            harom.Visibility = Visibility.Visible;
+            haromL.Visibility = Visibility.Visible;
+            negy.Visibility = Visibility.Visible;
+            negyL.Visibility = Visibility.Visible;
             for (int i = 0; i < 9; i++)
             {
                 for (int j = 0; j < 9; j++)
@@ -332,22 +332,19 @@ namespace City_Planner
                     switch (C1[i,j])
                     {
                         case 0:
-                            b.Background = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("living.png", UriKind.Relative)));
                             break;
                         case 1:
-                            b.Background = new SolidColorBrush(Color.FromRgb(80, 40, 0));
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("industrial.png", UriKind.Relative)));
                             break;
                         case 2:
-                            b.Background = new SolidColorBrush(Color.FromRgb(255, 255, 0));
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("commercial.png", UriKind.Relative)));
                             break;
                         case 3:
-                            b.Background = new SolidColorBrush(Color.FromRgb(255, 100, 0));
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("entertainment.png", UriKind.Relative)));
                             break;
                         case 4:
-                            b.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                            break;
-                        case 5:
-                            b.Background = new SolidColorBrush(Color.FromRgb(0, 0, 255));
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("hospital.png", UriKind.Relative)));
                             break;
                     }
                     b.Click += new RoutedEventHandler(varos1_Click);
@@ -371,26 +368,19 @@ namespace City_Planner
                     switch (C2[i, j])
                     {
                         case 0:
-                            b.Background = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                            
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("living.png", UriKind.Relative)));
                             break;
                         case 1:
-                            b.Background = new SolidColorBrush(Color.FromRgb(80, 40, 0));
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("industrial.png", UriKind.Relative)));
                             break;
                         case 2:
-                            b.Background = new SolidColorBrush(Color.FromRgb(255, 255, 0));
-                            
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("commercial.png", UriKind.Relative)));
                             break;
                         case 3:
-                            b.Background = new SolidColorBrush(Color.FromRgb(255, 100, 0));
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("entertainment.png", UriKind.Relative)));
                             break;
                         case 4:
-                            b.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                            
-                            break;
-                        case 5:
-                            b.Background = new SolidColorBrush(Color.FromRgb(0, 0, 255));
-                            
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("hospital.png", UriKind.Relative)));
                             break;
                     }
                     b.Click += new RoutedEventHandler(varos2_Click);
@@ -414,26 +404,19 @@ namespace City_Planner
                     switch (C3[i, j])
                     {
                         case 0:
-                            b.Background = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                            
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("living.png", UriKind.Relative)));
                             break;
                         case 1:
-                            b.Background = new SolidColorBrush(Color.FromRgb(80, 40, 0));
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("industrial.png", UriKind.Relative)));
                             break;
                         case 2:
-                            b.Background = new SolidColorBrush(Color.FromRgb(255, 255, 0));
-                            
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("commercial.png", UriKind.Relative)));
                             break;
                         case 3:
-                            b.Background = new SolidColorBrush(Color.FromRgb(255, 100, 0));
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("entertainment.png", UriKind.Relative)));
                             break;
                         case 4:
-                            b.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                            
-                            break;
-                        case 5:
-                            b.Background = new SolidColorBrush(Color.FromRgb(0, 0, 255));
-                            
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("hospital.png", UriKind.Relative)));
                             break;
                     }
                     b.Click += new RoutedEventHandler(varos3_Click);
@@ -457,26 +440,19 @@ namespace City_Planner
                     switch (C4[i, j])
                     {
                         case 0:
-                            b.Background = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                            
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("living.png", UriKind.Relative)));
                             break;
                         case 1:
-                            b.Background = new SolidColorBrush(Color.FromRgb(80, 40, 0));
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("industrial.png", UriKind.Relative)));
                             break;
                         case 2:
-                            b.Background = new SolidColorBrush(Color.FromRgb(255, 255, 0));
-                            
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("commercial.png", UriKind.Relative)));
                             break;
                         case 3:
-                            b.Background = new SolidColorBrush(Color.FromRgb(255, 100, 0));
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("entertainment.png", UriKind.Relative)));
                             break;
                         case 4:
-                            b.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                            
-                            break;
-                        case 5:
-                            b.Background = new SolidColorBrush(Color.FromRgb(0, 0, 255));
-                            
+                            b.Background = new ImageBrush(new BitmapImage(new Uri("hospital.png", UriKind.Relative)));
                             break;
                     }
                     b.Click += new RoutedEventHandler(varos4_Click);
@@ -500,7 +476,6 @@ namespace City_Planner
             boltszam();
             mulatszam();
             korhazszam();
-            iskolaszam();
             utszam();
             betonszam();
             vasutszam();
@@ -510,6 +485,16 @@ namespace City_Planner
             CityG2.Children.Clear();
             CityG3.Children.Clear();
             CityG4.Children.Clear();
+            nulla.Fill = new SolidColorBrush(Color.FromRgb(235, 235, 235));
+            nullaL.Content = "'0' gomb - Road";
+            egy.Fill = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+            egyL.Content = "'1' gomb - Highway";
+            ket.Fill = new SolidColorBrush(Color.FromRgb(170, 170, 170));
+            ketL.Content = "'2' gomb - Rail";
+            harom.Visibility = Visibility.Collapsed;
+            haromL.Visibility = Visibility.Collapsed;
+            negy.Visibility = Visibility.Collapsed;
+            negyL.Visibility = Visibility.Collapsed;
             for (int i = 0; i < 9; i++)
             {
                 for (int j = 0; j < 9; j++)
@@ -643,8 +628,8 @@ namespace City_Planner
                 U1[sor, oszlop] = kivalasztott;
                 kor++;
                 korL.Content = kor + ". kör";
+                AlsoMegjelenit();
             }
-            AlsoMegjelenit();
         }
         private void also2_Click(object sender, RoutedEventArgs e)
         {
@@ -657,8 +642,8 @@ namespace City_Planner
                 U2[sor, oszlop] = kivalasztott;
                 kor++;
                 korL.Content = kor + ". kör";
+                AlsoMegjelenit();
             }
-            AlsoMegjelenit();
         }
         private void also3_Click(object sender, RoutedEventArgs e)
         {
@@ -671,8 +656,8 @@ namespace City_Planner
                 U3[sor, oszlop] = kivalasztott;
                 kor++;
                 korL.Content = kor + ". kör";
+                AlsoMegjelenit();
             }
-            AlsoMegjelenit();
         }
         private void also4_Click(object sender, RoutedEventArgs e)
         {
@@ -685,8 +670,8 @@ namespace City_Planner
                 U4[sor, oszlop] = kivalasztott;
                 kor++;
                 korL.Content = kor + ". kör";
+                AlsoMegjelenit();
             }
-            AlsoMegjelenit();
         }
         private void varos1_Click(object sender, RoutedEventArgs e)
         {
@@ -699,8 +684,8 @@ namespace City_Planner
                 C1[sor, oszlop] = kivalasztott;
                 kor++;
                 korL.Content = kor + ". kör";
+                Megjelenit();
             }
-            Megjelenit();
         }
         private void varos2_Click(object sender, RoutedEventArgs e)
         {
@@ -713,8 +698,8 @@ namespace City_Planner
                 C2[sor, oszlop] = kivalasztott;
                 kor++;
                 korL.Content = kor + ". kör";
+                Megjelenit();
             }
-            Megjelenit();
         }
         private void varos3_Click(object sender, RoutedEventArgs e)
         {
@@ -727,8 +712,8 @@ namespace City_Planner
                 C3[sor, oszlop] = kivalasztott;
                 kor++;
                 korL.Content = kor + ". kör";
+                Megjelenit();
             }
-            Megjelenit();
         }
         private void varos4_Click(object sender, RoutedEventArgs e)
         {
@@ -741,8 +726,8 @@ namespace City_Planner
                 C4[sor, oszlop] = kivalasztott;
                 kor++;
                 korL.Content = kor + ". kör";
+                Megjelenit();
             }
-            Megjelenit();
         }
         private void CityB_Click(object sender, RoutedEventArgs e)
         {
@@ -766,8 +751,6 @@ namespace City_Planner
                 kivalasztott = 3;
             else if (Keyboard.IsKeyDown(Key.D4))
                 kivalasztott = 4;
-            else if (Keyboard.IsKeyDown(Key.D5))
-                kivalasztott = 5;
         }
     }
 }
