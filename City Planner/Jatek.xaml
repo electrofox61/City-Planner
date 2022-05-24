@@ -6,8 +6,15 @@
         xmlns:local="clr-namespace:City_Planner"
         mc:Ignorable="d"
         Title="Jatek" Height="768" Width="1366" ResizeMode="CanMinimize" SizeToContent="Manual" KeyDown="jatekablak_KeyDown" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="/CityBackground.png"/>
+    </Window.Background>
     <Grid>
-        <Grid x:Name="CityG1" Margin="23,20,1047,447">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="763*"/>
+            <ColumnDefinition Width="603*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="CityG1" Margin="23,20,444,447">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -33,8 +40,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
         </Grid>
-        <Button x:Name="CityB" Content="Város" HorizontalAlignment="Left" Margin="1005,71,0,0" VerticalAlignment="Top" Click="CityB_Click" FontSize="36"/>
-        <Button x:Name="AlsoB" Content="Alsó Rész" HorizontalAlignment="Left" Margin="1005,149,0,0" VerticalAlignment="Top" Click="AlsoB_Click" FontSize="36"/>
+        <Button x:Name="CityB" Content="Város" HorizontalAlignment="Left" Margin="242,71,0,0" VerticalAlignment="Top" Click="CityB_Click" FontSize="36" Grid.Column="1" Background="Red"/>
+        <Button x:Name="AlsoB" Content="Alsó Rész" HorizontalAlignment="Left" Margin="242,149,0,0" VerticalAlignment="Top" Click="AlsoB_Click" FontSize="36" Grid.Column="1" Background="Red"/>
         <Rectangle x:Name="nulla" HorizontalAlignment="Left" Height="50" Margin="23,594,0,0" Stroke="Black" VerticalAlignment="Top" Width="50">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/living.png"/>
@@ -45,8 +52,8 @@
                 <ImageBrush ImageSource="/industrial.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Label x:Name="nullaL" Content="'0' gomb - Living" HorizontalAlignment="Left" Margin="95,598,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Label x:Name="egyL" Content="'1' gomb - Industrial" HorizontalAlignment="Left" Margin="95,675,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label x:Name="nullaL" Content="'0' gomb - Living" HorizontalAlignment="Left" Margin="95,598,0,0" VerticalAlignment="Top" FontSize="24" Background="Red"/>
+        <Label x:Name="egyL" Content="'1' gomb - Industrial" HorizontalAlignment="Left" Margin="95,675,0,0" VerticalAlignment="Top" FontSize="24" Background="Red"/>
         <Rectangle x:Name="ket" HorizontalAlignment="Left" Height="50" Margin="350,598,0,0" Stroke="Black" VerticalAlignment="Top" Width="50">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/commercial.png"/>
@@ -57,15 +64,15 @@
                 <ImageBrush ImageSource="/entertainment.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Label x:Name="ketL" Content="'2' gomb - Commercial" HorizontalAlignment="Left" Margin="422,598,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Label x:Name="haromL" Content="'3' gomb - Entertainment" HorizontalAlignment="Left" Margin="422,675,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Rectangle x:Name="negy" HorizontalAlignment="Left" Height="50" Margin="726,598,0,0" Stroke="Black" VerticalAlignment="Top" Width="50">
+        <Label x:Name="ketL" Content="'2' gomb - Commercial" HorizontalAlignment="Left" Margin="422,598,0,0" VerticalAlignment="Top" FontSize="24" Background="Red"/>
+        <Label x:Name="haromL" Content="'3' gomb - Entertainment" HorizontalAlignment="Left" Margin="422,675,0,0" VerticalAlignment="Top" FontSize="24" Background="Red"/>
+        <Rectangle x:Name="negy" HorizontalAlignment="Left" Height="50" Margin="726,598,0,0" Stroke="Black" VerticalAlignment="Top" Width="50" Grid.ColumnSpan="2">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/hospital.png"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Label x:Name="negyL" Content="'4' gomb - Medical" HorizontalAlignment="Left" Margin="806,598,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Grid x:Name="CityG2" Margin="294,20,776,447">
+        <Label x:Name="negyL" Content="'4' gomb - Medical" HorizontalAlignment="Left" Margin="43,598,0,0" VerticalAlignment="Top" FontSize="24" Grid.Column="1" Background="Red"/>
+        <Grid x:Name="CityG2" Margin="294,20,173,447">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -91,7 +98,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
         </Grid>
-        <Grid x:Name="CityG3" Margin="23,274,1047,193">
+        <Grid x:Name="CityG3" Margin="23,274,444,193">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -117,7 +124,7 @@
                 <ColumnDefinition Width="29.6"/>
             </Grid.ColumnDefinitions>
         </Grid>
-        <Grid x:Name="CityG4" Margin="294,274,776,193">
+        <Grid x:Name="CityG4" Margin="294,274,173,193">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -143,15 +150,15 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
         </Grid>
-        <Label x:Name="jovdelemmutato" Content="A jövedelem:" HorizontalAlignment="Left" Margin="629,274,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Label x:Name="lakomutato" Content="A lakók száma:" HorizontalAlignment="Left" Margin="629,321,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Label x:Name="jovedelemL" Content="0" HorizontalAlignment="Left" Margin="776,274,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Label x:Name="lakoL" Content="0" HorizontalAlignment="Left" Margin="795,321,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Label x:Name="korL" Content="0. kör" HorizontalAlignment="Left" Margin="1082,598,0,0" VerticalAlignment="Top" FontSize="48"/>
-        <Label x:Name="boldogsagmutato" Content="Boldogság:" HorizontalAlignment="Left" Margin="629,368,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Label x:Name="boldogsagL" Content="1" HorizontalAlignment="Left" Margin="757,368,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Label x:Name="penzmutato" Content="Pénz:" HorizontalAlignment="Left" Margin="629,417,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <Label x:Name="penzL" Content="0" HorizontalAlignment="Left" Margin="702,417,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label x:Name="jovdelemmutato" Content="A jövedelem:" HorizontalAlignment="Left" Margin="629,274,0,0" VerticalAlignment="Top" FontSize="24" Grid.ColumnSpan="2" Background="Red"/>
+        <Label x:Name="lakomutato" Content="A lakók száma:" HorizontalAlignment="Left" Margin="629,321,0,0" VerticalAlignment="Top" FontSize="24" Grid.ColumnSpan="2" Background="Red"/>
+        <Label x:Name="jovedelemL" Content="0" HorizontalAlignment="Left" Margin="13,274,0,0" VerticalAlignment="Top" FontSize="24" Grid.Column="1" Background="Red"/>
+        <Label x:Name="lakoL" Content="0" HorizontalAlignment="Left" Margin="32,321,0,0" VerticalAlignment="Top" FontSize="24" Grid.Column="1" Background="Red"/>
+        <Label x:Name="korL" Content="0. kör" HorizontalAlignment="Left" Margin="319,598,0,0" VerticalAlignment="Top" FontSize="48" Grid.Column="1" Background="Red"/>
+        <Label x:Name="boldogsagmutato" Content="Boldogság:" HorizontalAlignment="Left" Margin="629,368,0,0" VerticalAlignment="Top" FontSize="24" Background="Red" Width="134"/>
+        <Label x:Name="boldogsagL" Content="1" HorizontalAlignment="Left" Margin="0,368,0,0" VerticalAlignment="Top" FontSize="24" Background="Red" Grid.Column="1"/>
+        <Label x:Name="penzmutato" Content="Pénz:" HorizontalAlignment="Left" Margin="629,417,0,0" VerticalAlignment="Top" FontSize="24" Background="Red"/>
+        <Label x:Name="penzL" Content="0" HorizontalAlignment="Left" Margin="694,417,0,0" VerticalAlignment="Top" FontSize="24" Background="Red"/>
 
     </Grid>
 </Window>
