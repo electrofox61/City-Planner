@@ -42,35 +42,35 @@
         </Grid>
         <Button x:Name="CityB" Content="Város" HorizontalAlignment="Left" Margin="242,71,0,0" VerticalAlignment="Top" Click="CityB_Click" FontSize="36" Grid.Column="1" Background="Red"/>
         <Button x:Name="AlsoB" Content="Alsó Rész" HorizontalAlignment="Left" Margin="242,149,0,0" VerticalAlignment="Top" Click="AlsoB_Click" FontSize="36" Grid.Column="1" Background="Red"/>
-        <Rectangle x:Name="nulla" HorizontalAlignment="Left" Height="50" Margin="23,594,0,0" Stroke="Black" VerticalAlignment="Top" Width="50">
-            <Rectangle.Fill>
+        <Button x:Name="nulla" HorizontalAlignment="Left" Height="50" Margin="23,594,0,0" VerticalAlignment="Top" Width="50" Click="nulla_Click">
+            <Button.Background>
                 <ImageBrush ImageSource="/living.png"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <Rectangle x:Name="egy" HorizontalAlignment="Left" Height="50" Margin="23,671,0,0" Stroke="Black" VerticalAlignment="Top" Width="50">
-            <Rectangle.Fill>
+            </Button.Background>
+        </Button>
+        <Button x:Name="egy" HorizontalAlignment="Left" Height="50" Margin="23,671,0,0" VerticalAlignment="Top" Width="50" Click="egy_Click">
+            <Button.Background>
                 <ImageBrush ImageSource="/industrial.png"/>
-            </Rectangle.Fill>
-        </Rectangle>
+            </Button.Background>
+        </Button>
         <Label x:Name="nullaL" Content="'0' gomb - Living" HorizontalAlignment="Left" Margin="95,598,0,0" VerticalAlignment="Top" FontSize="24" Background="Red"/>
         <Label x:Name="egyL" Content="'1' gomb - Industrial" HorizontalAlignment="Left" Margin="95,675,0,0" VerticalAlignment="Top" FontSize="24" Background="Red"/>
-        <Rectangle x:Name="ket" HorizontalAlignment="Left" Height="50" Margin="350,598,0,0" Stroke="Black" VerticalAlignment="Top" Width="50">
-            <Rectangle.Fill>
+        <Button x:Name="ket" HorizontalAlignment="Left" Height="50" Margin="350,598,0,0"  VerticalAlignment="Top" Width="50" Click="ket_Click">
+            <Button.Background>
                 <ImageBrush ImageSource="/commercial.png"/>
-            </Rectangle.Fill>
-        </Rectangle>
-        <Rectangle x:Name="harom" HorizontalAlignment="Left" Height="50" Margin="350,671,0,0" Stroke="Black" VerticalAlignment="Top" Width="50">
-            <Rectangle.Fill>
+            </Button.Background>
+        </Button>
+        <Button x:Name="harom" HorizontalAlignment="Left" Height="50" Margin="350,671,0,0"  VerticalAlignment="Top" Width="50" Click="harom_Click">
+            <Button.Background>
                 <ImageBrush ImageSource="/entertainment.png"/>
-            </Rectangle.Fill>
-        </Rectangle>
+            </Button.Background>
+        </Button>
         <Label x:Name="ketL" Content="'2' gomb - Commercial" HorizontalAlignment="Left" Margin="422,598,0,0" VerticalAlignment="Top" FontSize="24" Background="Red"/>
         <Label x:Name="haromL" Content="'3' gomb - Entertainment" HorizontalAlignment="Left" Margin="422,675,0,0" VerticalAlignment="Top" FontSize="24" Background="Red"/>
-        <Rectangle x:Name="negy" HorizontalAlignment="Left" Height="50" Margin="726,598,0,0" Stroke="Black" VerticalAlignment="Top" Width="50" Grid.ColumnSpan="2">
-            <Rectangle.Fill>
+        <Button x:Name="negy" HorizontalAlignment="Left" Height="50" Margin="726,598,0,0"  VerticalAlignment="Top" Width="50" Grid.ColumnSpan="2" Click="negy_Click">
+            <Button.Background>
                 <ImageBrush ImageSource="/hospital.png"/>
-            </Rectangle.Fill>
-        </Rectangle>
+            </Button.Background>
+        </Button>
         <Label x:Name="negyL" Content="'4' gomb - Medical" HorizontalAlignment="Left" Margin="43,598,0,0" VerticalAlignment="Top" FontSize="24" Grid.Column="1" Background="Red"/>
         <Grid x:Name="CityG2" Margin="294,20,173,447">
             <Grid.RowDefinitions>
@@ -159,6 +159,20 @@
         <Label x:Name="boldogsagL" Content="1" HorizontalAlignment="Left" Margin="0,368,0,0" VerticalAlignment="Top" FontSize="24" Background="Red" Grid.Column="1"/>
         <Label x:Name="penzmutato" Content="Pénz:" HorizontalAlignment="Left" Margin="629,417,0,0" VerticalAlignment="Top" FontSize="24" Background="Red"/>
         <Label x:Name="penzL" Content="0" HorizontalAlignment="Left" Margin="694,417,0,0" VerticalAlignment="Top" FontSize="24" Background="Red"/>
+        <Label x:Name="tip" Grid.Column="1" Content="Tipp: a játék a 100. körig megy, próbálj &#xA;meg minél több jövedelmet szerezni, és &#xA;minél több pénzzel végezni.&#xA;A boldogság a legfontosabb, vigyázz ne &#xA;menjen 0 alá.&#xD;&#xA;Ne feledkezz el a gyárakról se!" HorizontalAlignment="Left" Margin="148,209,0,0" VerticalAlignment="Top" FontSize="24" Background="Red" Height="203" Width="445"/>
+        <Button x:Name="help" Grid.Column="1" Content="Segítség" HorizontalAlignment="Left" Margin="499,10,0,0" VerticalAlignment="Top" Background="Red" FontSize="24" Click="help_Click"/>
+        <Label x:Name="living" Grid.Column="1" Content="0" HorizontalAlignment="Left" Margin="148,562,0,0" VerticalAlignment="Top" Background="Red" FontSize="16"/>
+        <Label x:Name="industrial" Grid.Column="1" Content="0" HorizontalAlignment="Left" Margin="234,562,0,0" VerticalAlignment="Top" Background="Red" FontSize="16"/>
+        <Label x:Name="commercial" Grid.Column="1" Content="0" HorizontalAlignment="Left" Margin="319,562,0,0" VerticalAlignment="Top" Background="Red" FontSize="16"/>
+        <Label x:Name="entertainment" Grid.Column="1" Content="0" HorizontalAlignment="Left" Margin="405,562,0,0" VerticalAlignment="Top" Background="Red" FontSize="16"/>
+        <Label x:Name="medical" Grid.Column="1" Content="0" HorizontalAlignment="Left" Margin="499,562,0,0" VerticalAlignment="Top" Background="Red" FontSize="16"/>
+        <ProgressBar x:Name="livingS" Grid.Column="1" HorizontalAlignment="Left" Height="140" Margin="133,417,0,0" VerticalAlignment="Top" Orientation="Vertical" Width="49" Maximum="324"/>
+        <ProgressBar x:Name="industrialS" Grid.Column="1" HorizontalAlignment="Left" Height="140" Margin="219,417,0,0" VerticalAlignment="Top" Orientation="Vertical" Width="49" Maximum="324" Foreground="#FF733307"/>
+        <ProgressBar x:Name="commercialS" Grid.Column="1" HorizontalAlignment="Left" Height="140" Margin="304,417,0,0" VerticalAlignment="Top" Orientation="Vertical" Width="49" Maximum="324" Foreground="#FFFFEA00"/>
+        <ProgressBar x:Name="entertainmentS" Grid.Column="1" HorizontalAlignment="Left" Height="140" Margin="390,417,0,0" VerticalAlignment="Top" Orientation="Vertical" Width="49" Maximum="324" Foreground="#FFF98D09"/>
+        <ProgressBar x:Name="medicalS" Grid.Column="1" HorizontalAlignment="Left" Height="140" Margin="484,419,0,0" VerticalAlignment="Top" Orientation="Vertical" Width="49" Maximum="324" Foreground="Red"/>
+        <Label x:Name="highscoreT" Content="Highscore" HorizontalAlignment="Left" Margin="735,662,0,0" VerticalAlignment="Top" FontSize="36" Background="Red" Grid.ColumnSpan="2" Width="185"/>
+        <Label x:Name="highscoreL" Grid.Column="1" Content="0" HorizontalAlignment="Left" Margin="157,662,0,0" VerticalAlignment="Top" FontSize="36" Background="Red"/>
 
     </Grid>
 </Window>

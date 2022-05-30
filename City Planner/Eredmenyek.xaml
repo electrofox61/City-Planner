@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Eredmenyek" Height="450" Width="800" Loaded="eredmenyablak_Loaded">
     <Grid>
-        <Label x:Name="nice" Content="nice" HorizontalAlignment="Left" Margin="450,176,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="nice" Content="Befejezetlen" HorizontalAlignment="Center" VerticalAlignment="Center" Height="254" Width="704" FontSize="128" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
     </Grid>
 </Window>

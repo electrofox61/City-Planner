@@ -32,21 +32,20 @@ namespace City_Planner
         int[,] U2 = new int[9, 9];
         int[,] U3 = new int[9, 9];
         int[,] U4 = new int[9, 9];
-        int kivalasztott = 0;
-        int lako = 0;
-        double penz = 0;
-        int kor = 0;
-        int gyar = 0;
-        double jovedelem = 0;
+        int kivalasztott, lako, kor, gyar, korhaz, vasut, mulat = 0;
+        double pont, penz, jovedelem = 0;
         double boldogsag = 1;
-        int korhaz = 0;
-        int vasut = 0;
         public void achcheck() //nincs még meghívva
         {
             if (vasut > 200)
             {
                 File.WriteAllText("vasut.txt", "true");
             }
+        }
+        public void pontszam()
+        {
+            //Nem néztem jobban bele, de egyszer negatív jövedelemmel és boldogsággal pozitív eredmény jött ki
+            pont = Math.Round(penz + 0.7 * jovedelem + boldogsag + lako,2);
         }
         public void lakoszam()
         {
@@ -135,18 +134,22 @@ namespace City_Planner
                 {
                     if (C1[i, j] == 3)
                     {
+                        mulat++;
                         boldogsag++;
                     }
                     if (C2[i, j] == 3)
                     {
+                        mulat++;
                         boldogsag++;
                     }
                     if (C3[i, j] == 3)
                     {
+                        mulat++;
                         boldogsag++;
                     }
                     if (C4[i, j] == 3)
                     {
+                        mulat++;
                         boldogsag++;
                     }
                 }
@@ -188,7 +191,7 @@ namespace City_Planner
             else if (korhaz == 3)
                 boldogsag += 7;
             else if (korhaz > 3)
-                boldogsag += 7 + korhaz * 0.1;
+                boldogsag += (korhaz - 3) * 0.1;
             boldogsagL.Content = Math.Round(boldogsag, 2);
             if (boldogsag == 0)
                 boldogsag = 0.1;
@@ -232,22 +235,86 @@ namespace City_Planner
                     if (U1[i, j] == 1)
                     {
                         penz -= 200;
-                        boldogsag += 0.3;
+                        boldogsag += 0.1;
+                        if (i >= 1 && U1[i - 1, j] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
+                        if (j >= 1 && U1[i, j - 1] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
+                        if (i < 8 && U1[i + 1, j] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
+                        if (j < 8 && U1[i, j + 1] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
                     }
                     if (U2[i, j] == 1)
                     {
                         penz -= 200;
-                        boldogsag += 0.3;
+                        boldogsag += 0.1;
+                        if (i >= 1 && U2[i - 1, j] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
+                        if (j >= 1 && U2[i, j - 1] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
+                        if (i < 8 && U2[i + 1, j] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
+                        if (j < 8 && U2[i, j + 1] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
                     }
                     if (U3[i, j] == 1)
                     {
                         penz -= 200;
-                        boldogsag += 0.3;
+                        boldogsag += 0.1;
+                        if (i >= 1 && U3[i - 1, j] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
+                        if (j >= 1 && U3[i, j - 1] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
+                        if (i < 8 && U3[i + 1, j] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
+                        if (j < 8 && U3[i, j + 1] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
                     }
                     if (U4[i, j] == 1)
                     {
                         penz -= 200;
-                        boldogsag += 0.3;
+                        boldogsag += 0.1;
+                        if (i >= 1 && U4[i - 1, j] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
+                        if (j >= 1 && U4[i, j - 1] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
+                        if (i < 8 && U4[i + 1, j] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
+                        if (j < 8 && U4[i, j + 1] == 1)
+                        {
+                            boldogsag += 0.1;
+                        }
                     }
                 }
             }
@@ -262,58 +329,124 @@ namespace City_Planner
                     {
                         vasut++;
                         penz -= 400;
-                        boldogsag += 0.8;
+                        boldogsag += 0.2;
+                        if (i >= 1 && U1[i-1,j] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
+                        if (j >= 1 && U1[i, j-1] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
+                        if (i < 8 && U1[i + 1, j] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
+                        if (j < 8 && U1[i, j+1] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
                     }
                     if (U2[i, j] == 2)
                     {
                         vasut++;
                         penz -= 400;
-                        boldogsag += 0.8;
+                        boldogsag += 0.2;
+                        if (i >= 1 && U2[i - 1, j] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
+                        if (j >= 1 && U2[i, j - 1] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
+                        if (i < 8 && U2[i + 1, j] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
+                        if (j < 8 && U2[i, j + 1] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
                     }
                     if (U3[i, j] == 2)
                     {
                         vasut++;
                         penz -= 400;
-                        boldogsag += 0.8;
+                        boldogsag += 0.2;
+                        if (i >= 1 && U3[i - 1, j] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
+                        if (j >= 1 && U3[i, j - 1] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
+                        if (i < 8 && U3[i + 1, j] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
+                        if (j < 8 && U3[i, j + 1] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
                     }
                     if (U4[i, j] == 2)
                     {
                         vasut++;
                         penz -= 400;
-                        boldogsag += 0.8;
+                        boldogsag += 0.2;
+                        if (i >= 1 && U4[i - 1, j] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
+                        if (j >= 1 && U4[i, j - 1] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
+                        if (i < 8 && U4[i + 1, j] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
+                        if (j < 8 && U4[i, j + 1] == 2)
+                        {
+                            boldogsag += 0.2;
+                        }
                     }
                 }
             }
         }
+        public void szamok()
+        {
+            living.Content = lako;
+            industrial.Content = gyar;
+            commercial.Content = jovedelem;
+            entertainment.Content = mulat;
+            medical.Content = korhaz;
+            livingS.Value = lako;
+            industrialS.Value = gyar;
+            commercialS.Value = jovedelem;
+            entertainmentS.Value = mulat;
+            medicalS.Value = korhaz;
+            StreamReader sr = new StreamReader("highscore.txt");
+            double highscore = Convert.ToDouble(sr.ReadLine());
+            highscoreL.Content = highscore;
+        }
         public void Megjelenit()
         {
-            jovedelem = 0;
-            korhaz = 0;
-            lako = 0;
-            boldogsag = 1;
-            lakoszam();
-            gyarszam();
-            boltszam();
-            mulatszam();
-            korhazszam();
-            utszam();
-            betonszam();
-            vasutszam();
-
-            adatszam();
             CityG1.Children.Clear();
             CityG2.Children.Clear();
             CityG3.Children.Clear();
             CityG4.Children.Clear();
-            nulla.Fill = new ImageBrush(new BitmapImage(new Uri("living.png", UriKind.Relative)));
+            nulla.Background = new ImageBrush(new BitmapImage(new Uri("living.png", UriKind.Relative)));
             nullaL.Content = "'0' gomb - Living";
-            egy.Fill = new ImageBrush(new BitmapImage(new Uri("industrial.png", UriKind.Relative)));
+            egy.Background = new ImageBrush(new BitmapImage(new Uri("industrial.png", UriKind.Relative)));
             egyL.Content = "'1' gomb - Industrial";
-            ket.Fill = new ImageBrush(new BitmapImage(new Uri("commercial.png", UriKind.Relative)));
+            ket.Background = new ImageBrush(new BitmapImage(new Uri("commercial.png", UriKind.Relative)));
             ketL.Content = "'2' gomb - Commercial";
-            harom.Fill = new ImageBrush(new BitmapImage(new Uri("entertainment.png", UriKind.Relative)));
+            harom.Background = new ImageBrush(new BitmapImage(new Uri("entertainment.png", UriKind.Relative)));
             haromL.Content = "'3' gomb - Entertainment";
-            negy.Fill = new ImageBrush(new BitmapImage(new Uri("hospital.png", UriKind.Relative)));
+            negy.Background = new ImageBrush(new BitmapImage(new Uri("hospital.png", UriKind.Relative)));
             negyL.Content = "'4' gomb - Medical";
             harom.Visibility = Visibility.Visible;
             haromL.Visibility = Visibility.Visible;
@@ -467,29 +600,32 @@ namespace City_Planner
 
         public void AlsoMegjelenit()
         {
-            korhaz = 0;
-            lako = 0;
-            penz = 0;
-            boldogsag = 1;
-            lakoszam();
-            gyarszam();
-            boltszam();
-            mulatszam();
-            korhazszam();
-            utszam();
-            betonszam();
-            vasutszam();
-
-            adatszam();
+            //mulat = 0;
+            //jovedelem = 0;
+            //gyar = 0;
+            //korhaz = 0;
+            //lako = 0;
+            //boldogsag = 1;
+            //lakoszam();
+            //gyarszam();
+            //boltszam();
+            //mulatszam();
+            //korhazszam();
+            //utszam();
+            //betonszam();
+            //vasutszam();
+            //szamok();
+            //adatszam();
+            //pontszam();
             CityG1.Children.Clear();
             CityG2.Children.Clear();
             CityG3.Children.Clear();
             CityG4.Children.Clear();
-            nulla.Fill = new SolidColorBrush(Color.FromRgb(235, 235, 235));
+            nulla.Background = new SolidColorBrush(Color.FromRgb(235, 235, 235));
             nullaL.Content = "'0' gomb - Road";
-            egy.Fill = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+            egy.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
             egyL.Content = "'1' gomb - Highway";
-            ket.Fill = new SolidColorBrush(Color.FromRgb(170, 170, 170));
+            ket.Background = new SolidColorBrush(Color.FromRgb(170, 170, 170));
             ketL.Content = "'2' gomb - Rail";
             harom.Visibility = Visibility.Collapsed;
             haromL.Visibility = Visibility.Collapsed;
@@ -629,6 +765,37 @@ namespace City_Planner
                 kor++;
                 korL.Content = kor + ". kör";
                 AlsoMegjelenit();
+                mulat = 0;
+                jovedelem = 0;
+                gyar = 0;
+                korhaz = 0;
+                lako = 0;
+                boldogsag = 1;
+                lakoszam();
+                gyarszam();
+                boltszam();
+                mulatszam();
+                korhazszam();
+                utszam();
+                betonszam();
+                vasutszam();
+                szamok();
+                adatszam();
+                pontszam();
+                if (kor >= 100)
+                {
+                    MessageBox.Show($"Vége a játéknak.\nPontszám: {pont} ");
+                    StreamReader sr = new StreamReader("highscore.txt");
+                    double highscore = Convert.ToDouble(sr.ReadLine());
+                    sr.Close();
+                    StreamWriter sw = new StreamWriter("highscore.txt");
+                    if (pont > highscore)
+                    {
+                        sw.WriteLine(pont);
+
+                    }
+                    sw.Close();
+                }
             }
         }
         private void also2_Click(object sender, RoutedEventArgs e)
@@ -643,6 +810,36 @@ namespace City_Planner
                 kor++;
                 korL.Content = kor + ". kör";
                 AlsoMegjelenit();
+                mulat = 0;
+                jovedelem = 0;
+                gyar = 0;
+                korhaz = 0;
+                lako = 0;
+                boldogsag = 1;
+                lakoszam();
+                gyarszam();
+                boltszam();
+                mulatszam();
+                korhazszam();
+                utszam();
+                betonszam();
+                vasutszam();
+                szamok();
+                adatszam();
+                pontszam();
+                if (kor >= 100)
+                {
+                    MessageBox.Show($"Vége a játéknak.\nPontszám: {pont} ");
+                    StreamReader sr = new StreamReader("highscore.txt");
+                    double highscore = Convert.ToDouble(sr.ReadLine());
+                    sr.Close();
+                    StreamWriter sw = new StreamWriter("highscore.txt");
+                    if (pont > highscore)
+                    {
+                        sw.WriteLine(pont);
+                    }
+                    sw.Close();
+                }
             }
         }
         private void also3_Click(object sender, RoutedEventArgs e)
@@ -657,6 +854,36 @@ namespace City_Planner
                 kor++;
                 korL.Content = kor + ". kör";
                 AlsoMegjelenit();
+                mulat = 0;
+                jovedelem = 0;
+                gyar = 0;
+                korhaz = 0;
+                lako = 0;
+                boldogsag = 1;
+                lakoszam();
+                gyarszam();
+                boltszam();
+                mulatszam();
+                korhazszam();
+                utszam();
+                betonszam();
+                vasutszam();
+                szamok();
+                adatszam();
+                pontszam();
+                if (kor >= 100)
+                {
+                    MessageBox.Show($"Vége a játéknak.\nPontszám: {pont} ");
+                    StreamReader sr = new StreamReader("highscore.txt");
+                    double highscore = Convert.ToDouble(sr.ReadLine());
+                    sr.Close();
+                    StreamWriter sw = new StreamWriter("highscore.txt");
+                    if (pont > highscore)
+                    {
+                        sw.WriteLine(pont);
+                    }
+                    sw.Close();
+                }
             }
         }
         private void also4_Click(object sender, RoutedEventArgs e)
@@ -671,8 +898,64 @@ namespace City_Planner
                 kor++;
                 korL.Content = kor + ". kör";
                 AlsoMegjelenit();
+                mulat = 0;
+                jovedelem = 0;
+                gyar = 0;
+                korhaz = 0;
+                lako = 0;
+                boldogsag = 1;
+                lakoszam();
+                gyarszam();
+                boltszam();
+                mulatszam();
+                korhazszam();
+                utszam();
+                betonszam();
+                vasutszam();
+                szamok();
+                adatszam();
+                pontszam();
+                if (kor >= 100)
+                {
+                    MessageBox.Show($"Vége a játéknak.\nPontszám: {pont} ");
+                    StreamReader sr = new StreamReader("highscore.txt");
+                    double highscore = Convert.ToDouble(sr.ReadLine());
+                    sr.Close();
+                    StreamWriter sw = new StreamWriter("highscore.txt");
+                    if (pont > highscore)
+                    {
+                        sw.WriteLine(pont);
+                    }
+                    sw.Close();
+                }
             }
         }
+
+        private void nulla_Click(object sender, RoutedEventArgs e)
+        {
+            kivalasztott = 0;
+        }
+
+        private void egy_Click(object sender, RoutedEventArgs e)
+        {
+            kivalasztott = 1;
+        }
+
+        private void ket_Click(object sender, RoutedEventArgs e)
+        {
+            kivalasztott = 2;
+        }
+
+        private void harom_Click(object sender, RoutedEventArgs e)
+        {
+            kivalasztott = 3;
+        }
+
+        private void negy_Click(object sender, RoutedEventArgs e)
+        {
+            kivalasztott = 4;
+        }
+
         private void varos1_Click(object sender, RoutedEventArgs e)
         {
             Button gomb = sender as Button;
@@ -685,6 +968,36 @@ namespace City_Planner
                 kor++;
                 korL.Content = kor + ". kör";
                 Megjelenit();
+                mulat = 0;
+                jovedelem = 0;
+                gyar = 0;
+                korhaz = 0;
+                lako = 0;
+                boldogsag = 1;
+                lakoszam();
+                gyarszam();
+                boltszam();
+                mulatszam();
+                korhazszam();
+                utszam();
+                betonszam();
+                vasutszam();
+                szamok();
+                adatszam();
+                pontszam();
+                if (kor >= 100)
+                {
+                    MessageBox.Show($"Vége a játéknak.\nPontszám: {pont} ");
+                    StreamReader sr = new StreamReader("highscore.txt");
+                    double highscore = Convert.ToDouble(sr.ReadLine());
+                    sr.Close();
+                    StreamWriter sw = new StreamWriter("highscore.txt");
+                    if (pont > highscore)
+                    {
+                        sw.WriteLine(pont);
+                    }
+                    sw.Close();
+                }
             }
         }
         private void varos2_Click(object sender, RoutedEventArgs e)
@@ -699,6 +1012,36 @@ namespace City_Planner
                 kor++;
                 korL.Content = kor + ". kör";
                 Megjelenit();
+                mulat = 0;
+                jovedelem = 0;
+                gyar = 0;
+                korhaz = 0;
+                lako = 0;
+                boldogsag = 1;
+                lakoszam();
+                gyarszam();
+                boltszam();
+                mulatszam();
+                korhazszam();
+                utszam();
+                betonszam();
+                vasutszam();
+                szamok();
+                adatszam();
+                pontszam();
+                if (kor >= 100)
+                {
+                    MessageBox.Show($"Vége a játéknak.\nPontszám: {pont} ");
+                    StreamReader sr = new StreamReader("highscore.txt");
+                    double highscore = Convert.ToDouble(sr.ReadLine());
+                    sr.Close();
+                    StreamWriter sw = new StreamWriter("highscore.txt");
+                    if (pont > highscore)
+                    {
+                        sw.WriteLine(pont);
+                    }
+                    sw.Close();
+                }
             }
         }
         private void varos3_Click(object sender, RoutedEventArgs e)
@@ -713,6 +1056,36 @@ namespace City_Planner
                 kor++;
                 korL.Content = kor + ". kör";
                 Megjelenit();
+                mulat = 0;
+                jovedelem = 0;
+                gyar = 0;
+                korhaz = 0;
+                lako = 0;
+                boldogsag = 1;
+                lakoszam();
+                gyarszam();
+                boltszam();
+                mulatszam();
+                korhazszam();
+                utszam();
+                betonszam();
+                vasutszam();
+                szamok();
+                adatszam();
+                pontszam();
+                if (kor >= 100)
+                {
+                    MessageBox.Show($"Vége a játéknak.\nPontszám: {pont} ");
+                    StreamReader sr = new StreamReader("highscore.txt");
+                    double highscore = Convert.ToDouble(sr.ReadLine());
+                    sr.Close();
+                    StreamWriter sw = new StreamWriter("highscore.txt");
+                    if (pont > highscore)
+                    {
+                        sw.WriteLine(pont);
+                    }
+                    sw.Close();
+                }
             }
         }
         private void varos4_Click(object sender, RoutedEventArgs e)
@@ -727,6 +1100,38 @@ namespace City_Planner
                 kor++;
                 korL.Content = kor + ". kör";
                 Megjelenit();
+                mulat = 0;
+                jovedelem = 0;
+                gyar = 0;
+                korhaz = 0;
+                lako = 0;
+                boldogsag = 1;
+                lakoszam();
+                gyarszam();
+                boltszam();
+                mulatszam();
+                korhazszam();
+                utszam();
+                betonszam();
+                vasutszam();
+                szamok();
+                adatszam();
+                pontszam();
+                if (kor >= 100)
+                {
+                    MessageBox.Show($"Vége a játéknak.\nPontszám: {pont} ");
+                    StreamReader sr = new StreamReader("highscore.txt");
+                    double highscore = Convert.ToDouble(sr.ReadLine());
+                    sr.Close();
+                    StreamWriter sw = new StreamWriter("highscore.txt");
+                    if (pont > highscore)
+                    {
+                        sw.WriteLine(pont);
+                    }
+                    sw.Close();
+                    StreamWriter sw2 = new StreamWriter("highscore.txt");
+                    sw.Close();
+                }
             }
         }
         private void CityB_Click(object sender, RoutedEventArgs e)
@@ -737,6 +1142,12 @@ namespace City_Planner
         private void AlsoB_Click(object sender, RoutedEventArgs e)
         {
             AlsoMegjelenit();
+        }
+
+        private void help_Click(object sender, RoutedEventArgs e)
+        {
+            Segitseg subWindow = new Segitseg();
+            subWindow.Show();
         }
 
         private void jatekablak_KeyDown(object sender, KeyEventArgs e)

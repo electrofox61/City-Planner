@@ -11,7 +11,7 @@
     </Window.Background>
     <Grid HorizontalAlignment="Left" Width="1366">
         <Button x:Name="start" Content="Start" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Width="303" Click="start_Click" Margin="0,289,0,0" Background="#9954FD19" FontFamily="DejaVu Sans" Foreground="Red" FontWeight="Bold"/>
-        <Button x:Name="eredmeny" Content="Eredmények" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Width="302" Margin="0,376,0,0" Click="eredmeny_Click" Background="#9954FD19" FontFamily="DejaVu Sans" Foreground="#FFFF0101" FontWeight="Bold"/>
+        <Button x:Name="eredmeny" Content="Eredmények" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Width="302" Margin="0,376,0,0" Click="eredmeny_Click" Background="#9954FD19" FontFamily="DejaVu Sans" Foreground="#FFFF0101" FontWeight="Bold" IsEnabled="False"/>
         <Button x:Name="kilepes" Content="Kilépés" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="36" Width="302" Margin="0,605,0,0" Click="kilepes_Click" Background="#9954FD19" FontFamily="DejaVu Sans" Foreground="Red" FontWeight="Bold"/>
         <Label Content="City Planner" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" Height="227" Width="1018" Foreground="Red" FontWeight="UltraBold" FontFamily="Goudy Stout" FontSize="72" Background="#9954FD19" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 

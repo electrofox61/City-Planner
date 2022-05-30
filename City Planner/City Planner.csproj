@@ -38,4 +38,10 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="highscore.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

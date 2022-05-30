@@ -34,8 +34,8 @@ namespace City_Planner
 
         private void eredmeny_Click(object sender, RoutedEventArgs e)
         {
-            Eredmenyek subWindow = new Eredmenyek();
-            subWindow.Show();
+            //Eredmenyek subWindow = new Eredmenyek();
+            //subWindow.Show();
         }
 
         private void kilepes_Click(object sender, RoutedEventArgs e)
